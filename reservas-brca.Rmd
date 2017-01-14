@@ -1,0 +1,98 @@
+---
+title: "Reservas del Banco Central de la República Argentina"
+output: 
+  flexdashboard::flex_dashboard:
+    output_file: index.html
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(zoo)
+library(dygraphs)
+library(DT)
+```
+
+```{r}
+reservas <- read.csv("./data/reservas.csv")
+reservas$fecha <- as.Date(reservas$fecha, format="%Y/%m/%d")
+reservas.ts <- zoo(reservas$reservas, order.by = reservas$fecha, frequency = 12)
+
+# Feo pero comodo
+eventos <- data.frame(fecha = "2003-9-11", descripcion="Pago Deuda FMI", link="http://tapas.clarin.com/tapa.html#20030911", stringsAsFactors = F)
+eventos <- rbind(eventos, data.frame(fecha = "2004-3-9", descripcion="Pago Deuda FMI", link="http://tapas.clarin.com/tapa.html#20040310"))
+eventos <- rbind(eventos, data.frame(fecha = "2006-1-3", descripcion="Cancelacion Deuda FMI", link="http://www.lanacion.com.ar/769528-se-cancelo-la-deuda-con-el-fondo-monetario"))
+eventos <- rbind(eventos, data.frame(fecha = "2010-8-3", descripcion="Pago BODEN 2012", link="http://www.bcra.gov.ar/Pdfs/Publicaciones/bol0810.pdf"))
+eventos <- rbind(eventos, data.frame(fecha = "2011-12-14", descripcion="Pago Deuda Publica", link="http://www.bcra.gov.ar/Pdfs/Publicaciones/bol0811.pdf"))
+eventos <- rbind(eventos, data.frame(fecha = "2011-8-5", descripcion="Pago BODEN 2012", link="http://www.bcra.gov.ar/Pdfs/Publicaciones/bol1211.pdf"))
+eventos <- rbind(eventos, data.frame(fecha = "2012-8-3", descripcion="Vencimiento BODEN 2012", link="http://www.ambito.com/648402-economia-efectivizo-el-pago-del-boden-2012"))
+eventos <- rbind(eventos, data.frame(fecha = "2012-12-14", descripcion="Pago Cupon PBI", link="http://www.lanacion.com.ar/1537303-el-pais-pago-el-cupon-pbi-y-cayeron-las-reservas"))
+eventos <- rbind(eventos, data.frame(fecha = "2015-4-29", descripcion="Colocacion YPF + BONAR 2024", link="http://www.lanacion.com.ar/1788694-las-reservas-del-banco-central-tocaron-su-mayor-nivel-en-18-meses"))
+eventos <- rbind(eventos, data.frame(fecha = "2015-10-2", descripcion="Cancelacion BODEN 2015", link="http://economygeeks.com/las-reservas-se-desploman-casi-20-en-octubre-mientras-el-bcra-ajusta-el-cepo/"))
+eventos <- rbind(eventos, data.frame(fecha = "2016-1-29", descripcion="Prestamo Puente de Bancos Privados", link="http://www.cronista.com/finanzasmercados/Reservas-el-BCRA-consiguio-un-prestamo-puente-de-bancos-privados-por-us-5.000-millones-20160129-0084.html"))
+eventos <- rbind(eventos, data.frame(fecha = "2016-4-22", descripcion="Colocacion Deuda pago Fondos Buitres", link="http://www.ambito.com/836372-tras-la-colocacion-las-reservas-subieron-us-6600-millones"))
+eventos <- rbind(eventos, data.frame(fecha = "2016-7-6", descripcion="Colocacion Deuda", link="http://www.bcra.gov.ar/Pdfs/Publicaciones/bol0716.pdf"))
+eventos <- rbind(eventos, data.frame(fecha = "2016-10-18", descripcion="Emision de Deuda", link="https://www.atrasdevos.com/2016/10/19/agresivo-plan-de-deuda-el-gobierno-emitio-145-mil-millones-solo-en-el-mes-de-octubre/"))
+eventos$fecha <- as.Date(eventos$fecha, format="%Y-%m-%d")
+
+eventos$link <- paste0("<a href=", eventos$link, ">", eventos$descripcion,"</a>")
+
+```
+
+
+Column {data-width=250}
+-----------------------------------------------------------------------
+
+### Evolución Reservas BCRA
+
+El siguiente gráfico nace de una curiosidad de evaluar la evolución de las reservas del BCRA a través del tiempo remarcando, además, los principales hitos en su historia.
+
+Los datos fueron obtenidos de la [web oficial del BCRA](http://http://www.bcra.gov.ar/PublicacionesEstadisticas/Principales_variables_datos.asp?descri=1&fecha=Fecha_Serie&campo=Res_Int_BCRA). Debido a la inexistencia de una api, se descargó manualmente y se pasó a un formato de CSV.
+
+El conjunto de eventos fue recopilado manualmente de distintos diarios y medios de comunicación, sus referencias pueden ser encontradas en la pestaña de Datos Crudos.
+
+Como extra, se incluye link a todos los **Boletines Mensuales del BCRA**: un documentos de 10 páginas donde se puede consultar de forma rápida información relevante a la toma y cancelación de deuda.
+
+Hecho por [Patricio Del Boca](https://twitter.com/pdelboca) y la gente de [Open Data Córdoba](http://opendatacordoba.org).
+
+Column {data-width=750, .tabset}
+-----------------------------------------------------------------------
+
+### Linea Temporal
+
+```{r grafico}
+dygraph(reservas.ts, main = "Evolucion de las Reservas del BCRA", width = "100%") %>%
+  dySeries("V1", label = "Reservas (USD)") %>%
+  dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
+  dyEvent(eventos$fecha, eventos$descripcion) %>%
+  dyRangeSelector()
+```
+
+### Datos Eventos
+
+```{r datos}
+DT::datatable(eventos[,c("fecha", "link")], 
+              escape = FALSE,
+              options = list(sDom  = '<"top">f<"bottom">ip'))
+```
+
+### Boletines Mensuales del BCRA
+
+```{r boletines}
+boletines <- data.frame(fecha = seq(as.Date("2003/01/01"), by = "month", length.out = 156))
+boletines$año <- format(boletines$fecha, format="%Y")
+boletines$mes <- format(boletines$fecha, format="%m")
+boletines$link_texto <- paste0("http://www.bcra.gov.ar/Pdfs/Publicaciones/bol",
+                               format(boletines$fecha, format="%y"),
+                               boletines$mes,
+                               ".pdf")
+boletines$link <- paste0("<a href=", boletines$link_texto,"> Link </a>")
+#"http://www.bcra.gov.ar/Pdfs/Publicaciones/bol1211.pdf"
+
+DT::datatable(boletines[,c("año", "mes", "link")], 
+            escape = FALSE, 
+            filter = 'top', 
+            selection="multiple",
+            options = list(sDom  = '<"top">t<"bottom">ip'))
+```
