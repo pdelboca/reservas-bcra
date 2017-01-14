@@ -1,7 +1,8 @@
 ---
-title: "Reservas del BCRA"
+title: "Banco Central de la República Argentina"
 output: 
   flexdashboard::flex_dashboard:
+    social: ["facebook", "twitter", "google-plus", "linkedin"]
     orientation: columns
     vertical_layout: fill
 ---
@@ -27,8 +28,8 @@ library(DT)
 
 ```{r}
 reservas <- read.csv("./data/reservas.csv")
-reservas$fecha <- as.Date(reservas$fecha, format="%Y/%m/%d")
-reservas.ts <- zoo(reservas$reservas, order.by = reservas$fecha, frequency = 12)
+reservas$fecha <- as.Date(reservas$fecha, format="%d/%m/%Y")
+reservas.ts <- zoo(reservas$reservas, order.by = reservas$fecha)
 
 # Feo pero comodo
 eventos <- data.frame(fecha = "2003-9-11", descripcion="Pago Deuda FMI", link="http://tapas.clarin.com/tapa.html#20030911", stringsAsFactors = F)
@@ -57,9 +58,9 @@ Column {data-width=250}
 
 ### Evolución de Reservas
 
-El siguiente gráfico nace de una curiosidad de evaluar la evolución de las reservas del **Banco Central de la República Argentina** a través del tiempo remarcando, además, los principales hitos en su historia.
+El siguiente gráfico nace de una curiosidad de visualizar la evolución de las reservas del **Banco Central de la República Argentina** a través del tiempo remarcando, además, los principales hitos en su historia.
 
-Los datos fueron obtenidos de la [web oficial del BCRA](http://http://www.bcra.gov.ar/PublicacionesEstadisticas/Principales_variables_datos.asp?descri=1&fecha=Fecha_Serie&campo=Res_Int_BCRA). Debido a la inexistencia de una api, se descargó manualmente y se pasó a un formato de CSV.
+Los datos fueron obtenidos de la [web oficial del BCRA](http://www.bcra.gov.ar/PublicacionesEstadisticas/Principales_variables_datos.asp?descri=1&fecha=Fecha_Serie&campo=Res_Int_BCRA). Debido a la inexistencia de una api, se descargó manualmente y se pasó a un formato de CSV.
 
 El conjunto de eventos fue recopilado manualmente de distintos diarios y medios de comunicación, sus referencias pueden ser encontradas en la pestaña de Datos Crudos.
 
