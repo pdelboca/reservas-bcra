@@ -1,8 +1,7 @@
 ---
-title: "Reservas del Banco Central de la República Argentina"
+title: "Reservas del BCRA"
 output: 
   flexdashboard::flex_dashboard:
-    output_file: index.html
     orientation: columns
     vertical_layout: fill
 ---
@@ -44,7 +43,7 @@ eventos$link <- paste0("<a href=", eventos$link, ">", eventos$descripcion,"</a>"
 Column {data-width=250}
 -----------------------------------------------------------------------
 
-### Evolución Reservas BCRA
+### Evolución Reservas del Banco Central de la República Argentina
 
 El siguiente gráfico nace de una curiosidad de evaluar la evolución de las reservas del BCRA a través del tiempo remarcando, además, los principales hitos en su historia.
 
