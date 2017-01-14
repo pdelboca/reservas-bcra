@@ -1,5 +1,5 @@
 ---
-title: "Banco Central de la República Argentina"
+title: "Evolución de las Reservas del BCRA"
 output: 
   flexdashboard::flex_dashboard:
     social: ["facebook", "twitter", "google-plus", "linkedin"]
@@ -70,13 +70,53 @@ Hecho por [Patricio Del Boca](https://twitter.com/pdelboca) y la gente de [Open 
 
 Column {data-width=750, .tabset}
 -----------------------------------------------------------------------
+### Mandatos Presidenciales
 
-### Linea Temporal
-
-```{r grafico}
-dygraph(reservas.ts, main = "Evolucion de las Reservas del BCRA", width = "100%") %>%
+```{r grafico_presidentes}
+dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
+  dyShading(from = "2003-5-25", to = "2015-12-10") %>%
+  dyShading(from = "2015-12-10", to = "2017-01-17", color = "#ffff99") %>%
+  dyEvent("2003-5-25", "Nestor Kirchner") %>%
+  dyEvent("2007-12-10", "Cristina Fernandez de Kirchner",labelLoc = "bottom") %>%
+  dyEvent("2011-12-10", "Cristina Fernandez de Kirchner",labelLoc = "bottom") %>%
+  dyEvent("2015-12-10", "Mauricio Macri") %>%
+  #dyShading(from = "1940-1-1", to = "1950-1-1", color = "#CCEBD6")
+  dyRangeSelector()
+```
+
+
+### Ministros de Economía
+
+```{r grafico_ministros}
+dygraph(reservas.ts, width = "100%") %>%
+  dySeries("V1", label = "Reservas (USD)") %>%
+  dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
+  dyShading(from = "2003-5-25", to = "2015-12-10") %>%
+  dyShading(from = "2015-12-10", to = "2017-01-17", color = "#ffff99") %>%
+  dyEvent("2003-5-25", "Roberto Lavagna") %>%
+  dyEvent("2005-11-28", "Felisa Miceli") %>%
+  dyEvent("2007-07-17", "Miguel Gustavo Peirano",labelLoc = "bottom") %>%
+  dyEvent("2007-12-10", "Martín Lousteau",labelLoc = "bottom") %>%
+  dyEvent("2008-04-25", "Carlos Rafael Fernández",labelLoc = "bottom") %>%
+  dyEvent("2009-07-07", "Amado Boudou",labelLoc = "bottom") %>%
+  dyEvent("2011-12-10", "Hernán Lorenzino",labelLoc = "bottom") %>%
+  dyEvent("2013-10-20", "Axel Kicillof",labelLoc = "bottom") %>%
+  dyEvent("2015-12-10", "Alfonso Prat-Gay") %>%
+  dyEvent("2017-01-11", "Nicolás Dujovne",labelLoc = "bottom") %>%
+  dyRangeSelector()
+```
+
+
+### Eventos Importantes
+
+```{r grafico_eventos}
+dygraph(reservas.ts, width = "100%") %>%
+  dySeries("V1", label = "Reservas (USD)") %>%
+  dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
+  dyShading(from = "2003-5-25", to = "2015-12-10") %>%
+  dyShading(from = "2015-12-10", to = "2017-01-17", color = "#ffff99") %>%
   dyEvent(eventos$fecha, eventos$descripcion) %>%
   dyRangeSelector()
 ```
