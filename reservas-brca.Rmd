@@ -24,11 +24,11 @@ library(flexdashboard)
 library(zoo)
 library(dygraphs)
 library(DT)
+source("scrapper.R")
 ```
 
 ```{r}
-reservas <- read.csv("./data/reservas.csv")
-reservas$fecha <- as.Date(reservas$fecha, format="%d/%m/%Y")
+reservas <- get_data()
 reservas.ts <- zoo(reservas$reservas, order.by = reservas$fecha)
 
 # Feo pero comodo
