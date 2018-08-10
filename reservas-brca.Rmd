@@ -46,6 +46,18 @@ eventos <- rbind(eventos, data.frame(fecha = "2016-1-29", descripcion="Prestamo 
 eventos <- rbind(eventos, data.frame(fecha = "2016-4-22", descripcion="Colocacion Deuda pago Fondos Buitres", link="http://www.ambito.com/836372-tras-la-colocacion-las-reservas-subieron-us-6600-millones"))
 eventos <- rbind(eventos, data.frame(fecha = "2016-7-6", descripcion="Colocacion Deuda", link="http://www.bcra.gov.ar/Pdfs/Publicaciones/bol0716.pdf"))
 eventos <- rbind(eventos, data.frame(fecha = "2016-10-18", descripcion="Emision de Deuda", link="https://www.atrasdevos.com/2016/10/19/agresivo-plan-de-deuda-el-gobierno-emitio-145-mil-millones-solo-en-el-mes-de-octubre/"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-01-26", descripcion="Emision de Deuda", link="https://www.infobae.com/economia/finanzas-y-negocios/2017/01/26/las-reservas-del-banco-central-alcanzaron-el-nivel-mas-alto-en-mas-de-4-anos/"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-04-18", descripcion="Pago BONAR X", link="https://www.infobae.com/economia/2017/04/18/tras-la-caida-de-reservas-el-banco-central-intensificara-la-compra-de-dolares/"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-05-25", descripcion="Pago Club de Paris", link="https://www.cronista.com/finanzasmercados/Las-reservas-perdieron-us-1000-millones-por-pagos-al-Club-de-Paris-20170525-0029.html"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-06-28", descripcion="Bono a 100 años", link="https://www.cronista.com/finanzasmercados/El-bono-del-siglo-rinde-75-en-la-plaza-local-y-dispara-las-reservas-20170629-0041.html"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-08-04", descripcion="Ampliacion Bonar 2024", link="https://www.cronista.com/finanzasmercados/Entraron-los-dolares-del-Repo-y-las-reservas-superan-los-us-49.000-millones-20170804-0121.html"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-09-05", descripcion="Creditos Repo", link="http://www.ambito.com/896145-las-reservas-del-banco-central-treparon-us-1815-millones-a-su-mayor-nivel-en-casi-cinco-meses"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-10-13", descripcion="Rueda Cambiaria", link="https://www.cronista.com/finanzasmercados/Las-reservas-del-Central-alcanzaron-un-nuevo-maximo-historico-20171013-0131.html"))
+eventos <- rbind(eventos, data.frame(fecha = "2017-11-09", descripcion="Colocacion Deuda en Euros", link="https://www.infobae.com/economia/finanzas-y-negocios/2017/11/09/las-reservas-del-banco-central-ascendieron-al-record-de-usd-54-747-millones/"))
+eventos <- rbind(eventos, data.frame(fecha = "2018-01-11", descripcion="Emision de Deuda", link="https://www.lanacion.com.ar/2099973-reservas-record-en-el-bcra-por-los-ingresos-de-la-deuda"))
+
+
+
 eventos$fecha <- as.Date(eventos$fecha, format="%Y-%m-%d")
 
 eventos$link <- paste0("<a href=", eventos$link, ">", eventos$descripcion,"</a>")
