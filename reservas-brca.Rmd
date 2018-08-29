@@ -55,6 +55,8 @@ eventos <- rbind(eventos, data.frame(fecha = "2017-09-05", descripcion="Creditos
 eventos <- rbind(eventos, data.frame(fecha = "2017-10-13", descripcion="Rueda Cambiaria", link="https://www.cronista.com/finanzasmercados/Las-reservas-del-Central-alcanzaron-un-nuevo-maximo-historico-20171013-0131.html"))
 eventos <- rbind(eventos, data.frame(fecha = "2017-11-09", descripcion="Colocacion Deuda en Euros", link="https://www.infobae.com/economia/finanzas-y-negocios/2017/11/09/las-reservas-del-banco-central-ascendieron-al-record-de-usd-54-747-millones/"))
 eventos <- rbind(eventos, data.frame(fecha = "2018-01-11", descripcion="Emision de Deuda", link="https://www.lanacion.com.ar/2099973-reservas-record-en-el-bcra-por-los-ingresos-de-la-deuda"))
+eventos <- rbind(eventos, data.frame(fecha = "2018-04-19", descripcion="Inicio corrida cambiaria", link="https://www.pagina12.com.ar/111366-corrida-cambiaria-record"))
+eventos <- rbind(eventos, data.frame(fecha = "2018-06-22", descripcion="Vuelve el FMI", link="http://www.perfil.com/noticias/economia/con-el-primer-desembolso-del-fmi-las-reservas-pasaron-los-us-60-mil-millones.phtml"))
 
 
 
@@ -89,7 +91,7 @@ dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
   dyShading(from = "2003-5-25", to = "2015-12-10") %>%
-  dyShading(from = "2015-12-10", to = "2017-01-17", color = "#ffff99") %>%
+  dyShading(from = "2015-12-10", to = "2018-08-29", color = "#ffff99") %>%
   dyEvent("2003-5-25", "Nestor Kirchner") %>%
   dyEvent("2007-12-10", "Cristina Fernandez de Kirchner",labelLoc = "bottom") %>%
   dyEvent("2011-12-10", "Cristina Fernandez de Kirchner",labelLoc = "bottom") %>%
@@ -106,7 +108,7 @@ dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
   dyShading(from = "2003-5-25", to = "2015-12-10") %>%
-  dyShading(from = "2015-12-10", to = "2017-01-17", color = "#ffff99") %>%
+  dyShading(from = "2015-12-10", to = "2018-08-29", color = "#ffff99") %>%
   dyEvent("2003-5-25", "Roberto Lavagna") %>%
   dyEvent("2005-11-28", "Felisa Miceli") %>%
   dyEvent("2007-07-17", "Miguel Gustavo Peirano",labelLoc = "bottom") %>%
@@ -128,7 +130,7 @@ dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
   dyShading(from = "2003-5-25", to = "2015-12-10") %>%
-  dyShading(from = "2015-12-10", to = "2017-01-17", color = "#ffff99") %>%
+  dyShading(from = "2015-12-10", to = "2018-08-29", color = "#ffff99") %>%
   dyEvent(eventos$fecha, eventos$descripcion) %>%
   dyRangeSelector()
 ```
