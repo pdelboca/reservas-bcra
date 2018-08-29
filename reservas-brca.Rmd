@@ -74,7 +74,7 @@ Column {data-width=250}
 
 El siguiente gráfico nace de una curiosidad de visualizar la evolución de las reservas del **Banco Central de la República Argentina** a través del tiempo remarcando, además, los principales hitos en su historia.
 
-Los datos fueron obtenidos de la [web oficial del BCRA](http://www.bcra.gov.ar/PublicacionesEstadisticas/Principales_variables_datos.asp?descri=1&fecha=Fecha_Serie&campo=Res_Int_BCRA). Debido a la inexistencia de una api, se descargó manualmente y se pasó a un formato de CSV.
+Los datos fueron obtenidos de la [web oficial del BCRA](http://www.bcra.gov.ar/PublicacionesEstadisticas/Principales_variables_datos.asp?descri=1&fecha=Fecha_Serie&campo=Res_Int_BCRA).
 
 El conjunto de eventos fue recopilado manualmente de distintos diarios y medios de comunicación, sus referencias pueden ser encontradas en la pestaña de Datos Crudos.
 
