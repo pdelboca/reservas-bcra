@@ -91,7 +91,7 @@ dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
   dyShading(from = "2003-5-25", to = "2015-12-10") %>%
-  dyShading(from = "2015-12-10", to = "2018-08-29", color = "#ffff99") %>%
+  dyShading(from = "2015-12-10", to = "2018-08-31", color = "#ffff99") %>%
   dyEvent("2003-5-25", "Nestor Kirchner") %>%
   dyEvent("2007-12-10", "Cristina Fernandez de Kirchner",labelLoc = "bottom") %>%
   dyEvent("2011-12-10", "Cristina Fernandez de Kirchner",labelLoc = "bottom") %>%
@@ -108,7 +108,7 @@ dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
   dyShading(from = "2003-5-25", to = "2015-12-10") %>%
-  dyShading(from = "2015-12-10", to = "2018-08-29", color = "#ffff99") %>%
+  dyShading(from = "2015-12-10", to = "2018-08-31", color = "#ffff99") %>%
   dyEvent("2003-5-25", "Roberto Lavagna") %>%
   dyEvent("2005-11-28", "Felisa Miceli") %>%
   dyEvent("2007-07-17", "Miguel Gustavo Peirano",labelLoc = "bottom") %>%
@@ -130,7 +130,7 @@ dygraph(reservas.ts, width = "100%") %>%
   dySeries("V1", label = "Reservas (USD)") %>%
   dyAxis("y", label = "Miles de Millones (USD)",axisLabelFontSize = 10) %>%
   dyShading(from = "2003-5-25", to = "2015-12-10") %>%
-  dyShading(from = "2015-12-10", to = "2018-08-29", color = "#ffff99") %>%
+  dyShading(from = "2015-12-10", to = "2018-08-31", color = "#ffff99") %>%
   dyEvent(eventos$fecha, eventos$descripcion) %>%
   dyRangeSelector()
 ```

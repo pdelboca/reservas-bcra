@@ -16,7 +16,7 @@ get_data <- function() {
     html_form()
   
   form.filled <- form.unfilled %>%
-    set_values(desde = "02/01/2003", hasta = "29/08/2018")
+    set_values(desde = "02/01/2003", hasta = "31/08/2018")
   
   # submit the form and save as a new session
   session <- submit_form(cocorahs, form.filled)
